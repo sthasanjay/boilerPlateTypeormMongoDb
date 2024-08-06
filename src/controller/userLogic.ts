@@ -38,7 +38,10 @@ export class userController {
         res: Response,
         next: NextFunction,
     ): Promise<any> => {
-        const filePath = path.join(__dirname, "..", "public", "index.html");
-        return res.sendFile(filePath);
+        const userInfo = await this.userDao.findAll();
+        res.status(200).json({
+            status: "Success",
+            data: userInfo,
+        });
     };
 }

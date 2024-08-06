@@ -85,16 +85,16 @@ import dotenv from "dotenv";
 import { socketConnection } from "./systemSocket";
 
 import { connectToDatabase } from "./db.config/db";
+import app from "./app";
 dotenv.config({ path: "./config.env" });
 
-const app = express();
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
-    const filePath = path.join(__dirname, "..", "src/public", "index.html");
-    return res.send(filePath);
-});
+// app.get("/", (req, res) => {
+//     const filePath = path.join(__dirname, "..", "src/public", "index.html");
+//     return res.send(filePath);
+// });
 // Handle Socket.io connections
 const server = http.createServer(app);
 const io = new Server(server);
